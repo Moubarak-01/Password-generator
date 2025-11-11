@@ -16,7 +16,6 @@ A simple Python GUI application to generate strong, random passwords. Built with
 ## Screenshots
 
 ![Example Screenshot](./Screenshot%202025-11-10%20225246.png)  
-*Replace `screenshot.png` with an actual screenshot of your app*
 
 ---
 
