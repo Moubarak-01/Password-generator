@@ -1,37 +1,30 @@
 import random
 import string
-from tkinter import Tk, Label, Button
+from tkinter import Tk, Label, Button, Entry
 
+def generate_password():
+    try:
+        length = int(length_entry.get())
+    except ValueError:
+        password_label.config(text="Please enter a valid number!")
+        return
+
+    characters = string.ascii_letters + string.digits + string.punctuation
+    random_password = ''.join(random.choice(characters) for _ in range(length))
+    password_label.config(text="Generated Password: " + random_password)
+
+# GUI setup
 window = Tk()
 window.title("Password Generator")
 
+Label(window, text="Password Length:").pack()
+length_entry = Entry(window)
+length_entry.insert(0, "12")  # Default length
+length_entry.pack()
 
-
-def generate_password():
-    random_password = ""
-
-    random_password += random.choice(string.ascii_letters)
-    random_password += random.choice(string.ascii_letters)
-    random_password += random.choice(string.ascii_letters)
-    random_password += random.choice(string.ascii_letters)
-
-    random_password += str(random.randint(0, 9))
-    random_password += str(random.randint(0, 9))
-    random_password += str(random.randint(0, 9))
-    random_password += str(random.randint(0, 9))
-
-    # Update the label with the generated password
-    password_label.config(text="Generated Password: " + random_password)
-
-
-# Create a label to display the generated password
-password_label = Label(window, text="Generated Password: ")
-
-# Create a button to trigger password generation
-generate_button = Button(window, text="Generate Password", command=generate_password)
-
-# Pack the label and button
+password_label = Label(window, text="Generated Password:")
 password_label.pack()
-generate_button.pack()
+
+Button(window, text="Generate Password", command=generate_password).pack()
 
 window.mainloop()
